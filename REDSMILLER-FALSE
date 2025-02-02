@@ -40,34 +40,59 @@ local TabSetting2 = Window:CreateTab("Settings-2", 1510045894) -- This is Misc p
 local TabThe = Window:CreateTab("Themes", 1510045894) -- This is Themes page
 local TabCre = Window:CreateTab("Credits", 1510045894) -- This is credits page
 
-local Toggle = TabMisc:CreateToggle({
-   Name = "InfJump",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(InfiniteJumpEnabled)
-       local InfiniteJumpEnabled = true
-       game:GetService("UserInputService").JumpRequest:connect(function()
-           if InfiniteJumpEnabled then
-               game:GetService"Players".LocalPlayer.Character:FindFirstChild0fClass'Humanoid':ChangeState("Jumping")
+
+ local Button = TabMisc:CreateButton({
+    Name = "print 'hello'",
+    Callback = function(k)
+        v = print('hello')
+    end,
+ })
+ 
+ 
+  
+ local Toggle = TabMisc:CreateToggle({
+    Name = "Infinite Jump",
+    CurrentValue = false,
+    Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(InfiniteJumpEnabled)
+        local InfiniteJumpEnabled = true
+        game:GetService("UserInputService").JumpRequest:connect(function()
+            if InfiniteJumpEnabled then
+                game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
             end
         end)
-   end,
-})
+    end,
+ })
+ 
+ 
+ 
+ local Slider = TabMisc:CreateSlider({
+    Name = "Walkspeed",
+    Range = {16, 250},
+    Increment = 10,
+    Suffix = "Walkspeed",
+    CurrentValue = 10,
+    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(v)
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = v
+    end,
+ })
+ 
+ 
+ 
+ local Slider = TabMisc:CreateSlider({
+    Name = "JumpPower",
+    Range = {50, 500},
+    Increment = 10,
+    Suffix = "JumpPower",
+    CurrentValue = 10,
+    Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(v)
+        game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
+    end,
+ })
 
 
-
-
-local Slider = TabMisc:CreateSlider({
-   Name = "JumpPower",
-   Range = {50, 500},
-   Increment = 10,
-   Suffix = "JumpPower",
-   CurrentValue = 10,
-   Flag = "Slider1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
-   Callback = function(v)
-       game.Players.LocalPlayer.Character.Humanoid.JumpPower = v
-   end,
-})
 
 local Label15 = TabSetting:CreateLabel("Default keybind: {K}")
 
